@@ -1,0 +1,31 @@
+{% extends '../base.html' %}
+{% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>成绩统计</h1>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td><strong>作业编号</strong> </td>
+                    <td><strong>作业答案</strong> </td>
+                    <td><strong>作业点评</strong> </td>
+                    <td><strong>作业分数</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in stuhomework %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.homework_answer }}</td>
+                    <td>{{ item.homework_review }}</td>
+                    <td>{{ item.homework_grade }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</div>
+{% endblock %}

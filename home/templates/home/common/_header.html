@@ -1,0 +1,19 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">作业平台</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if request.session.is_login %}
+                        <li><a href="#">当前在线：{{ request.session.user_name }},身份：{{ request.session.rolename }}</a></li>
+                        <li><a href="/logout/">退出登录</a></li>
+                    {% else %}
+                        <li><a href="/login/">登录</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

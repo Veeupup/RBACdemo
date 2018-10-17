@@ -1,0 +1,32 @@
+{% extends "../base.html" %}
+{% block content %}
+<div>
+    <div class="jumbotron">
+        <h1>勤奋写作业平台</h1>
+        {% if request.session.role_id == 3 %}
+            <p>欢迎你，管理员！在此平台完成您对作业平台的操作！</p>
+            <p>您可以在此查看所有成绩的统计</p>
+            <a href="/statistics/" class="btn btn-default btn-lg">成绩统计</a>
+            <p>以下是作业列表</p>
+        {% elif request.session.role_id == 2 %}
+            <p>欢迎你，老师！在此平台完成 <strong>发布作业</strong>和对作业进行 <strong>批改</strong>和<strong>评分</strong>。</p>
+            <p>以下是作业列表</p>
+        {% elif request.session.role_id == 1 %}
+            <p>欢迎你，同学！在此平台完成老师布置的作业！</p>
+            <p>以下是老师布置的作业。</p>
+        {% else %}
+            <p>登录之后才能查看本网站的信息。</p>
+        {% endif %}
+        {% if request.session.is_login %}
+            {% for homework in homework_list %}
+                <div class="list-group">
+                    <a href="/{{ homework.id }}/homework/" class="list-group-item active">
+                    <h4 class="list-group-item-heading">{{ homework }}</h4>
+                    <p class="list-group-item-text">{{ homework.homework_request }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
